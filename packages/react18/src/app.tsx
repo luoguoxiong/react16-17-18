@@ -1,30 +1,37 @@
-import React from 'react';
-import logo from '@/src/static/logo.svg';
-import styles from '@/src/app.module.less';
-import './app.css';
-
-function App() {
+import React, { useState, Suspense, lazy } from 'react';
+const Lazy = lazy(()=>import("./lazy"))
+const Lazy2 = lazy(()=>import("./lazy2"))
+const App: React.FC = () => {
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const delay = ()=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res(1)
+        }, 100);
+    })
+  }
+  console.log('App组件渲染了！');
   return (
-    <div className={styles.App}>
-      <header className={styles['App-header']}>
-        <img
-          src={logo}
-          className={styles['App-logo']}
-          alt="logo" />
-        <p>
-          Edit <code>src/app.js</code> and save to reload.
-        </p>
-        <a
-          className={styles['App-link']}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+        onClick={async (e) => {
+        setTimeout(() => {
+            console.log(e) 
+        },0);
+        setCount1(count => count + 1);
+        setCount2(count => count + 1);
+      }}
+    >
+      <div>count1： {count1}</div>
+      <div>count2： {count2}</div>
+      <Suspense fallback="lazy2...">
+        <Lazy2></Lazy2>
+        <Suspense fallback="lazy...">
+            <Lazy></Lazy>
+        </Suspense>
+      </Suspense>
     </div>
   );
-}
+};
 
 export default App;

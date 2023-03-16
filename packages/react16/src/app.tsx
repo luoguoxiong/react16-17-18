@@ -1,30 +1,36 @@
-import React from 'react';
-import logo from '@/src/static/logo.svg';
-import styles from '@/src/app.module.less';
-import './app.css';
+import React, { useState } from 'react';
 
-function App() {
+const App: React.FC = () => {
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const delay = ()=>{
+    return new Promise((res)=>{
+        setTimeout(() => {
+            res(1)
+        }, 1000);
+    })
+  }
+  React.useEffect(()=>{
+    document.addEventListener("click",()=>{
+        // setCount1(count => count + 1);
+        // setCount2(count => count + 1);
+    })
+  },[])
+  console.log('App组件渲染了！');
   return (
-    <div className={styles.App}>
-      <header className={styles['App-header']}>
-        <img
-          src={logo}
-          className={styles['App-logo']}
-          alt="logo" />
-        <p>
-          Edit <code>src/app.js</code> and save to reload.
-        </p>
-        <a
-          className={styles['App-link']}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      onClick={async (e) => {
+        setTimeout(() => {
+            console.log(e) 
+        },0);
+        setCount1(count => count + 1);
+        setCount2(count => count + 1);
+      }}
+    >
+      <div>count1： {count1}</div>
+      <div>count2： {count2}</div>
     </div>
   );
-}
+};
 
 export default App;
