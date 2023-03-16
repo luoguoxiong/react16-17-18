@@ -1,0 +1,27 @@
+{
+  "name": "react16-17-18",
+  "version": "1.0.0",
+  "description": "react16~18版本的区别",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luoguoxiong/react16-17-18.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luoguoxiong/react16-17-18/issues"
+  },
+  "devDependencies": {
+    "@hulljs/eslint-config-hull-app": "^0.0.1",
+    "lerna": "^4.0.0"
+  },
+  "homepage": "https://github.com/luoguoxiong/react16-17-18#readme",
+  "workspaces": [
+    "./packages/*"
+  ]
+}
